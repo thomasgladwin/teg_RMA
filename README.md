@@ -6,7 +6,7 @@ Basic usage: O = teg_RMA(M, levels, varnames)
 
 with M an observation x nested variable-combinations matrix; levels a vector with the number of levels per variable (from highest to lowest level of nesting); and varnames a cell array of strings.
 
-Interactions are explored by recursively testing the lower-level interaction per level of the final factor.
+Interactions are explored by recursively testing the lower-level effects per level of the final factor.
 
 Categorical and continuous between-subject factors can be added. Note that in this implementation, tests are performed per effect separately. So, including a between-subject factor does not affect within-subject tests. Be aware that this differs from the tests in SPSS.
 
