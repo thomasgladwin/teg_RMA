@@ -18,4 +18,5 @@ To use the program, you need to download the latest teg_RMA.zip and teg_basic_fu
 
 Please cite as:
 Thomas Edward Gladwin. (2017, July 13). thomasgladwin/teg_RMA: Version 1. Zenodo. http://doi.org/10.5281/zenodo.826750
+
 <a href="https://doi.org/10.5281/zenodo.826750"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.826750.svg" alt="DOI"></a>
