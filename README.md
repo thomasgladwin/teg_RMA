@@ -13,3 +13,5 @@ Categorical and continuous between-subject factors can be added. Note that in th
 The F-tests for significant effects are reported, together with other statistical measures including partial eta squared estimates of effect size.
 
 Set perm_test = 1 in the settings variables at the top of teg_repeated_measures_ANOVA to use permutation testing to determine p-values (slow but nicely avoids assumptions); set perm_test = 0 otherwise. Set nIts_perm to adjust the number of iterations. 
+
+To use the program, you need to download the latest teg_RMA.zip and teg_basic_funcs.zip, unpack them to their own directories, and add both to the Matlab path.
