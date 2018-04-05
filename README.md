@@ -14,7 +14,7 @@ The F-tests for significant effects are reported, together with other statistica
 
 Set perm_test = 1 in the settings variables at the top of teg_RMA to use permutation testing to determine p-values (slow but nicely avoids assumptions); set perm_test = 0 otherwise. Set nIts_perm to adjust the number of iterations. 
 
-To use the program, you need to download the latest teg_RMA.zip and teg_basic_funcs.zip, unpack them to their own directories, and add both to the Matlab path.
+To use the program, you need to download the latest teg_RMA.zip, teg_basic_stats.zip and teg_basic_funcs.zip, unpack them to their own directories, and add them all to the Matlab path.
 
 Please cite as:
 Thomas Edward Gladwin. (2017, July 13). thomasgladwin/teg_RMA: Version 1. Zenodo. http://doi.org/10.5281/zenodo.826750
