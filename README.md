@@ -17,6 +17,6 @@ Set perm_test = 1 in the settings variables at the top of teg_RMA to use randomi
 To use the program, you need to download the latest teg_RMA.zip, teg_basic_stats.zip and teg_basic_funcs.zip, unpack them to their own directories, and add them all to the Matlab path.
 
 Please cite as:
-Thomas Edward Gladwin. (2017, July 13). thomasgladwin/teg_RMA: Version 1. Zenodo. http://doi.org/10.5281/zenodo.826750
+Thomas Edward Gladwin (2020). An implementation of repeated measures ANOVA: effect coding, automated exploration of interactions, and randomization testing. MethodsX, in press.
 
 <a href="https://doi.org/10.5281/zenodo.826750"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.826750.svg" alt="DOI"></a>
