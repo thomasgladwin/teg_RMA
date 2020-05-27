@@ -12,7 +12,7 @@ Categorical and continuous between-subject factors can be added. Note that in th
 
 The F-tests for significant effects are reported, together with other statistical measures including partial eta squared estimates of effect size. Various descriptive statistics are given. Note that the p-values printed with means reflects the difference of the raw scores from zero when there is no within-subject factor, and the differences of the scores after subtraction of the subject-mean from zero when there is a within-subject factor.
 
-Set perm_test = 1 in the settings variables at the top of teg_RMA to use permutation testing to determine p-values (slow but nicely avoids assumptions); set perm_test = 0 otherwise. Set nIts_perm to adjust the number of iterations. 
+Set perm_test = 1 in the settings variables at the top of teg_RMA to use randomization and permutation testing to determine p-values (slow but nicely avoids assumptions); set perm_test = 0 otherwise. Set nIts_perm to adjust the number of iterations. 
 
 To use the program, you need to download the latest teg_RMA.zip, teg_basic_stats.zip and teg_basic_funcs.zip, unpack them to their own directories, and add them all to the Matlab path.
 
