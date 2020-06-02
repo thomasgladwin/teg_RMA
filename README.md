@@ -1,8 +1,10 @@
 # teg_RMA
 
-M-files that organize data for analyses using, e.g., repeated measures ANOVA.
+Regression analyses and repeated measures ANOVA in Matlab and Python.
 
-Basic usage: O = teg_RMA(M, levels, varnames)
+For use in Python: pip install tegstats, and check out the example .py files.
+
+For Matlab, the basic usage is: O = teg_RMA(M, levels, varnames)
 
 with M an observation x nested variable-combinations matrix; levels a vector with the number of levels per variable (from highest to lowest level of nesting); and varnames a cell array of strings.
 
