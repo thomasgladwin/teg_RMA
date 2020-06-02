@@ -2,7 +2,7 @@
 
 Regression analyses and repeated measures ANOVA in Matlab and Python.
 
-For use in Python: pip install tegstats, and check out the example .py files.
+For use in Python: pip install tegstats (or use the tegstats.py file), and check out the example_regression and example_RMA .py files.
 
 For Matlab, the basic usage is: O = teg_RMA(M, levels, varnames)
 
