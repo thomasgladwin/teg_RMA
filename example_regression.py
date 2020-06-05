@@ -1,4 +1,5 @@
 import numpy as np
+# import tegstats_local as tegstats
 import tegstats
 
 # Params for simulated data

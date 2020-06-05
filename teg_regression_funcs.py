@@ -47,19 +47,6 @@ def get_coeff_test(X, resss, coeffs):
             p_vec.append(1)
     return t_vec, p_vec, df_t, se_vec
 
-def hierarchical(baseline_X, y, df1, ErrVar):
-    N, k_baseline = np.shape(baseline_X)
-    Res_baseline = teg_regression(baseline_X, y)
-    F_baseline = Res_baseline['F']
-    df1_baseline = Res_baseline['df1']
-    df2_baseline = Res_baseline['df2']
-    ErrVar_baseline = Res_baseline['ErrVar']
-    Delta_df1 = df1 - df1_baseline
-    Delta_df2 = N - df1
-    Delta_F = ((ErrVar_baseline * (N-1) - ErrVar * (N-1)) / Delta_df1) / (ErrVar * (N-1) / Delta_df2)
-    Delta_p = 1 - stats.f.cdf(Delta_F, Delta_df1, Delta_df1)
-    return Delta_F, Delta_p, Delta_df1, Delta_df2
-
 def create_correlated_variable(X, r):
     if len(np.shape(X)) == 1:
         X = np.reshape(X, (len(X), 1))

@@ -29,7 +29,7 @@ def teg_regression(X, y, baseline_X = []):
     t_vec, p_vec, df_t, se_vec = teg_regression_funcs.get_coeff_test(X, resss, coeffs)
     # Hierarchical
     if len(baseline_X) > 0:
-        Delta_F, Delta_p, Delta_df1, Delta_df2 = teg_regression_funcs.hierarchical(baseline_X, y, df1, ErrVar)
+        Delta_F, Delta_p, Delta_df1, Delta_df2 = hierarchical(baseline_X, y, df1, ErrVar)
     else:
         Delta_F = 0
         Delta_p = 1
@@ -39,6 +39,19 @@ def teg_regression(X, y, baseline_X = []):
     return ({'b':coeffs, 'R2':R2, 
         'df1':df1, 'df2':df2, 'F':F, 'F_p':F_p,
         't':t_vec, 't_p':p_vec, 'df_t':df_t, 'se_vec':se_vec, 'Delta_F':Delta_F, 'Delta_p':Delta_p, 'Delta_df1':Delta_df1, 'Delta_df2':Delta_df2, 'ErrVar':ErrVar})
+
+def hierarchical(baseline_X, y, df1, ErrVar):
+    N, k_baseline = np.shape(baseline_X)
+    Res_baseline = teg_regression(baseline_X, y)
+    F_baseline = Res_baseline['F']
+    df1_baseline = Res_baseline['df1']
+    df2_baseline = Res_baseline['df2']
+    ErrVar_baseline = Res_baseline['ErrVar']
+    Delta_df1 = df1 - df1_baseline
+    Delta_df2 = N - df1
+    Delta_F = ((ErrVar_baseline * (N-1) - ErrVar * (N-1)) / Delta_df1) / (ErrVar * (N-1) / Delta_df2)
+    Delta_p = 1 - stats.f.cdf(Delta_F, Delta_df1, Delta_df1)
+    return Delta_F, Delta_p, Delta_df1, Delta_df2
 
 def teg_report_regr(Res):
     print('R2 = ' + str(np.around(Res['R2'], 3)) + ', F(' + str(np.around(Res['df1'], 3)) + ', ' + str(np.around(Res['df2'], 3)) + ') = ' + str(np.around(Res['F'], 3)) + ', p = ' + str(np.around(Res['F_p'], 3)))
