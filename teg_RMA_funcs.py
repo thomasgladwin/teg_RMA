@@ -179,22 +179,40 @@ def within_subject_results(X_rep, Y_red, Fit, SSM, SSE, B_effect_coding_array):
     results = [F, df1, df2, p, eta_p_2, eps0, SSM, SSE, MSM, MSE]
     return results
 
-def calculations_per_test(effect_coding_array, Y, B_effect_coding_array = []):
+def calculations_per_test(effect_coding_array, Y, B_effect_coding_array, randomization_tests):
     X_rep, Y_red, Fit, SSM, SSE = within_subject_regression(effect_coding_array, Y, B_effect_coding_array)
     results = within_subject_results(X_rep, Y_red, Fit, SSM, SSE, B_effect_coding_array)
     return results
 
-def get_results(effect_coding_arrays, B_effect_coding_arrays, Y):
+def get_results(effect_coding_arrays, B_effect_coding_arrays, Y, randomization_tests):
     results = []
     factors_per_result = []
     for i_effect in range(len(effect_coding_arrays)):
-        effect_results = calculations_per_test(effect_coding_arrays[i_effect], Y)
+        effect_results = calculations_per_test(effect_coding_arrays[i_effect], Y, [], randomization_tests)
         results.append(effect_results)
         factors_per_result.append([i_effect, -1])
         for i_effect_B in range(len(B_effect_coding_arrays)):
-            effect_results = calculations_per_test(effect_coding_arrays[i_effect], Y, B_effect_coding_arrays[i_effect_B])
+            effect_results = calculations_per_test(effect_coding_arrays[i_effect], Y, B_effect_coding_arrays[i_effect_B], randomization_tests)
             results.append(effect_results)
             factors_per_result.append([i_effect, i_effect_B])
+    if randomization_tests == 1:
+        nIts = 50000
+        F_rnd = []
+        for iIt in range(nIts):
+            # Flip and permute
+            flipper0 = -1 + 2 * np.random.randint(0, 2, size=(1, Y.shape[1]))
+            flipperM = np.matmul(np.ones((Y.shape[0], 1)), flipper0)
+            Y_flip = np.multiply(Y, flipperM)
+            results_rnd, dum0 = get_results(effect_coding_arrays, B_effect_coding_arrays, Y_flip, 0)
+            F_list = [results_rnd[n][0] for n in range(len(results_rnd))]
+            F_rnd.append(F_list)
+        F_rnd = np.array(F_rnd)
+        # Replace original results p with randomization-based p
+        for i_test in range(len(results)):
+            F_rnd_vec = np.array(F_rnd.T[i_test])
+            n_higher = len(np.where(F_rnd_vec > results[i_test][0])[0])
+            p_rand = n_higher / len(F_rnd)
+            results[i_test][3] = p_rand
     return results, factors_per_result
 
 def report(results, effect_factors, B_effect_factors, factors_per_result):

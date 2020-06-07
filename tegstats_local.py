@@ -65,7 +65,7 @@ def teg_report_regr(Res):
 ### teg_RMA
 #
 
-def teg_RMA(Y, levels, B = []):
+def teg_RMA(Y, levels, B = [], randomization_tests = 0):
     # Y is numpy matrix, levels is list, B is numpy matrix
     # [condition, observations] orientation
     effect_coding_arrays, effect_factors = teg_RMA_funcs.effect_coding(levels)
@@ -74,6 +74,6 @@ def teg_RMA(Y, levels, B = []):
     else:
         B_effect_coding_arrays = []
         B_effect_factors = []
-    [results, factors_per_result] = teg_RMA_funcs.get_results(effect_coding_arrays, B_effect_coding_arrays, Y)
+    [results, factors_per_result] = teg_RMA_funcs.get_results(effect_coding_arrays, B_effect_coding_arrays, Y, randomization_tests)
     teg_RMA_funcs.report(results, effect_factors, B_effect_factors, factors_per_result)
     return results
