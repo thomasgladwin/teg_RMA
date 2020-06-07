@@ -198,7 +198,11 @@ def get_results(effect_coding_arrays, B_effect_coding_arrays, Y, randomization_t
     if randomization_tests == 1:
         nIts = 50000
         F_rnd = []
+        print('Running randomization tests.')
         for iIt in range(nIts):
+            if iIt > 0 and np.mod(iIt, np.floor(nIts/10)) == 0:
+                perc = np.around(100 * iIt / nIts)
+                print(str(perc) + '% ', end = "", flush=True)
             # Flip and permute
             flipper0 = -1 + 2 * np.random.randint(0, 2, size=(1, Y.shape[1]))
             flipperM = np.matmul(np.ones((Y.shape[0], 1)), flipper0)
@@ -206,6 +210,7 @@ def get_results(effect_coding_arrays, B_effect_coding_arrays, Y, randomization_t
             results_rnd, dum0 = get_results(effect_coding_arrays, B_effect_coding_arrays, Y_flip, 0)
             F_list = [results_rnd[n][0] for n in range(len(results_rnd))]
             F_rnd.append(F_list)
+        print('Randomization tests complete.\n')
         F_rnd = np.array(F_rnd)
         # Replace original results p with randomization-based p
         for i_test in range(len(results)):

@@ -6,7 +6,7 @@ import tegstats
 #
 # Randomization testing uses 50000 iterations; takes a little while.
 #
-# Be aware this implementation does effect-wise testing as expained in the paper, so between-within interactions aren't identical to, e.g., SPSS.
+# Be aware this implementation does an effect-wise form of testing, as expained in the paper, so between-within interactions aren't identical to, e.g., SPSS.
 #
 # Gladwin TE (2020). An implementation of repeated measures ANOVA: effect coding, automated exploration of interactions, and randomization testing. MethodsX, doi:10.1016/j.mex.2020.100947.
 
@@ -16,14 +16,18 @@ levels = [2, 5]
 noise_fac = 1
 effects = np.ones((np.prod(levels), 1))
 Y = np.matmul(effects, np.ones((1, N))) + noise_fac * np.random.randn(len(effects), N)
+print('\nParametric tests:')
 stats = tegstats.teg_RMA(Y, levels)
-# stats = tegstats.teg_RMA(Y, levels, randomization_tests=1)
+print('\nRandomization tests:')
+stats = tegstats.teg_RMA(Y, levels, randomization_tests=1)
 
 # Within x between
 levels_per_B = [3, 4]
 B = np.vstack([np.random.randint(1, n + 1, size=(1, N)) for n in levels_per_B])
+print('\nParametric tests:')
 stats = tegstats.teg_RMA(Y, levels, B)
-# stats = tegstats.teg_RMA(Y, levels, B, randomization_tests=1)
+print('\nRandomization tests:')
+stats = tegstats.teg_RMA(Y, levels, B, randomization_tests=1)
 
 # Save to text for comparison: adjust parameters as needed
 np.savetxt('test.txt', np.hstack((B.T, Y.T))) 
