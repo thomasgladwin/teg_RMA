@@ -2,7 +2,7 @@
 
 Repeated measures ANOVA in Matlab and (with fewer bells and whistles) Python.
 
-For use in Python: pip install tegstats (or use the tegstats_local.py file), and see the example_regression and example_RMA .py files for usage. The Python version so far only does pure within-subject analyses, within x between-factor interactions (with an arbitrary number of factors and levels per factor), and randomization tests. The package includes the multiple and hierarchical regression function teg_regression.
+For use in Python: pip install tegstats (or use the tegstats_local.py file), and see the example_regression and example_RMA .py files for usage. The Python version so far only does pure within-subject analyses, within x between-factor interactions (with an arbitrary number of factors and levels per factor), and the option to use randomization tests. The package includes the multiple and hierarchical regression function teg_regression.
 
 For Matlab, the basic usage is: O = teg_RMA(M, levels, varnames)
 
